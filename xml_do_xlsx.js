@@ -169,15 +169,12 @@ try {
   h.Font.Color = rgb(255, 255, 255);
   h.Interior.Color = rgb(31, 78, 120);
   h.WrapText = true;
+  h.HorizontalAlignment = -4108;
   h.VerticalAlignment = -4108;
   ws.Range("F2:Q" + tot).NumberFormat = "#,##0";
-  ws.Range("R2:S" + tot).NumberFormat = "#,##0.##";
-  ws.Cells.Font.Name = "Arial";
+  ws.Range("R2:S" + tot).NumberFormat = "General";
+  ws.Cells.Font.Name = "Calibri";
   ws.Cells.Font.Size = 10;
-  ws.Columns("A:S").ColumnWidth = 14;
-  ws.Columns("B").ColumnWidth = 26;
-  ws.Columns("Q").ColumnWidth = 20;
-  ws.Rows(1).RowHeight = 42;
   ws.Range("A1:S" + last).AutoFilter();
   ws.Activate();
   ws.Range("C2").Select();
@@ -216,11 +213,15 @@ try {
   kh2.Font.Bold = true;
   kh2.Font.Color = rgb(255, 255, 255);
   kh2.Interior.Color = rgb(31, 78, 120);
-  ks.Cells.Font.Name = "Arial";
+  ks.Cells.Font.Name = "Calibri";
   ks.Cells.Font.Size = 10;
   ks.Range("B2:D5").NumberFormat = "#,##0";
-  ks.Columns("A").ColumnWidth = 42;
-  ks.Columns("B:F").ColumnWidth = 20;
+  // \u0161\u00ED\u0159ky sloupc\u016F: nejd\u0159\u00EDv cca 1 cm, pak automaticky (v\u010Detn\u011B zalomen\u00E9ho z\u00E1hlav\u00ED)
+  ws.Range("A1:S" + tot).ColumnWidth = 4.7;
+  ws.Range("A1:S" + tot).Columns.AutoFit();
+  // v\u00FD\u0161ka prvn\u00EDho \u0159\u00E1dku automaticky podle zalomen\u00E9ho z\u00E1hlav\u00ED
+  ws.Rows(1).AutoFit();
+  ks.Range("A1:F5").Columns.AutoFit();
   ws.Activate();
 
   var outPath = fso.BuildPath(fso.GetParentFolderName(xmlPath), fso.GetBaseName(xmlPath) + ".xlsx");
